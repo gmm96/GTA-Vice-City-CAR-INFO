@@ -1,0 +1,45 @@
+{$CLEO .cs}
+
+// CAR INFO BY GMM96
+// Author: gmm96
+// Github: https://github.com/gmm96
+
+script_name 'CARINFO' 
+set_wb_check_to 1 
+
+:CARINFO_1
+wait 0 
+if 
+00E0:   player $PLAYER_CHAR in_any_car 
+jf @CARINFO_1 
+03C1: 0@ = player $PLAYER_CHAR car_no_save 
+wait 0 
+04F7: status_text $DAMAGE 1 line 2 'DAMAGE'
+04F7: status_text $SPEED 0 line 3 'SPEED'
+
+:CARINFO_2
+wait 0 
+if and
+   not wasted_or_busted 
+00E0:   player $PLAYER_CHAR in_any_car 
+jf @CARINFO_3 
+$DAMAGE = Car.Health(0@)            // max health = 1000 hp
+$DAMAGE /= 10                       // displayed graph counts from 0 to 100
+$DAMAGE -= 24                       // vehicle starts explosion at 240 hp
+if $DAMAGE < 0
+then
+   $DAMAGE = 0
+else
+   $DAMAGE *= 100                   // calculation of car damage from 0 to 100,
+   $DAMAGE /= 76                    // being 0 as the moment car starts explosion 
+end
+02E3: $SPEED = car 0@ SPEED         // max speed = 50 
+$SPEED *= 3.8                       // 3.8 as a constant for km/h
+008C: $SPEED = float_to_integer $SPEED
+jump @CARINFO_2 
+
+:CARINFO_3
+Car.RemoveReferences(1@)
+0151: remove_status_text $DAMAGE 
+0151: remove_status_text $SPEED
+jump @CARINFO_1 
