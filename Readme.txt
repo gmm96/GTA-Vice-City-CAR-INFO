@@ -26,6 +26,9 @@
     Telegram   :- @supremoh
 
  5. Other Notes
+    CLEO Library for GTA Vice City should be installed in the current 
+    game directory.
+
     If you want to change the messages that will be displayed with the
     values, just open the file VCCarInfo_by_GMM96.fxt located on the 
     directory CLEO\CLEO_TEXT and modify the words on the right column.
