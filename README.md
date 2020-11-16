@@ -3,7 +3,7 @@
 &nbsp;
 
 ### What is it?
-This is a simple CLEO script for GTA Vice City that will show a **speedometer** and a **damage meter** every time you get in a vehicle, for this the genuine style of the game status messages.
+This is a simple CLEO script for GTA Vice City that will show a **speedometer** and a **damage meter** every time you get in a vehicle, using for this the genuine style of the game status messages.
 
 Speed will be displayed in **Km/h** and damage message will be in Spanish. Keep reading if you want to modify them to another message or to another language.
 
